@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DCE8E2829EF844A0018588F /* PokemonListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE8E2729EF844A0018588F /* PokemonListItemView.swift */; };
+		3DCE8E3329EF94F60018588F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE8E2F29EF94F60018588F /* APIService.swift */; };
+		3DCE8E3429EF94F60018588F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE8E3029EF94F60018588F /* Endpoint.swift */; };
+		3DCE8E3829EFB34F0018588F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE8E3729EFB34F0018588F /* HomeViewModel.swift */; };
+		3DCE8E3E29EFC1A10018588F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3DCE8E3D29EFC1A10018588F /* SDWebImageSwiftUI */; };
 		78BE609329EB445500841486 /* assessment_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BE609229EB445500841486 /* assessment_iosApp.swift */; };
 		78BE609529EB445500841486 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BE609429EB445500841486 /* HomeView.swift */; };
 		78BE609729EB445700841486 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78BE609629EB445700841486 /* Assets.xcassets */; };
@@ -38,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3DCE8E2729EF844A0018588F /* PokemonListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListItemView.swift; sourceTree = "<group>"; };
+		3DCE8E2F29EF94F60018588F /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		3DCE8E3029EF94F60018588F /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		3DCE8E3729EFB34F0018588F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		78BE608F29EB445500841486 /* assessment-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "assessment-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78BE609229EB445500841486 /* assessment_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assessment_iosApp.swift; sourceTree = "<group>"; };
 		78BE609429EB445500841486 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -59,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DCE8E3E29EFC1A10018588F /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +89,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DCE8E2229EF7FDB0018588F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				78BE609429EB445500841486 /* HomeView.swift */,
+				3DCE8E2729EF844A0018588F /* PokemonListItemView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DCE8E2329EF7FF50018588F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3DCE8E3729EFB34F0018588F /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3DCE8E2429EF807C0018588F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3DCE8E2329EF7FF50018588F /* ViewModel */,
+				3DCE8E2229EF7FDB0018588F /* View */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3DCE8E2529EF80860018588F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		3DCE8E2629EF808E0018588F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3DCE8E2C29EF94F60018588F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3DCE8E2F29EF94F60018588F /* APIService.swift */,
+				3DCE8E3029EF94F60018588F /* Endpoint.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		78BE608629EB445500841486 = {
 			isa = PBXGroup;
 			children = (
@@ -106,9 +165,8 @@
 				78BE609B29EB445700841486 /* Persistence.swift */,
 				78BE609629EB445700841486 /* Assets.xcassets */,
 				78BE609D29EB445700841486 /* assessment_ios.xcdatamodeld */,
-				78BE60C229EB477E00841486 /* UseCases */,
-				78BE60C429EB482300841486 /* Model */,
-				78BE60C529EB482C00841486 /* Provider */,
+				3DCE8E2C29EF94F60018588F /* Networking */,
+				78BE60C329EB479100841486 /* Home */,
 				78BE60C629EB483700841486 /* Util */,
 				78BE609829EB445700841486 /* Preview Content */,
 			);
@@ -149,36 +207,14 @@
 			path = tests;
 			sourceTree = "<group>";
 		};
-		78BE60C229EB477E00841486 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				78BE60C329EB479100841486 /* Home */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
 		78BE60C329EB479100841486 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				78BE609429EB445500841486 /* HomeView.swift */,
+				3DCE8E2629EF808E0018588F /* Data */,
+				3DCE8E2529EF80860018588F /* Domain */,
+				3DCE8E2429EF807C0018588F /* Presentation */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		78BE60C429EB482300841486 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		78BE60C529EB482C00841486 /* Provider */ = {
-			isa = PBXGroup;
-			children = (
-				78BE60C829EB49C800841486 /* UserDefaults */,
-				78BE60C729EB49B200841486 /* Services */,
-			);
-			path = Provider;
 			sourceTree = "<group>";
 		};
 		78BE60C629EB483700841486 /* Util */ = {
@@ -187,20 +223,6 @@
 				78BE60C929EB4A6000841486 /* Util.swift */,
 			);
 			path = Util;
-			sourceTree = "<group>";
-		};
-		78BE60C729EB49B200841486 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		78BE60C829EB49C800841486 /* UserDefaults */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UserDefaults;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +241,9 @@
 			dependencies = (
 			);
 			name = "assessment-ios";
+			packageProductDependencies = (
+				3DCE8E3D29EFC1A10018588F /* SDWebImageSwiftUI */,
+			);
 			productName = "assessment-ios";
 			productReference = 78BE608F29EB445500841486 /* assessment-ios.app */;
 			productType = "com.apple.product-type.application";
@@ -291,6 +316,9 @@
 				Base,
 			);
 			mainGroup = 78BE608629EB445500841486;
+			packageReferences = (
+				3DCE8E3C29EFC1A10018588F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 78BE609029EB445500841486 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -335,9 +363,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				78BE609C29EB445700841486 /* Persistence.swift in Sources */,
+				3DCE8E3829EFB34F0018588F /* HomeViewModel.swift in Sources */,
 				78BE609529EB445500841486 /* HomeView.swift in Sources */,
 				78BE60CA29EB4A6000841486 /* Util.swift in Sources */,
+				3DCE8E3429EF94F60018588F /* Endpoint.swift in Sources */,
+				3DCE8E2829EF844A0018588F /* PokemonListItemView.swift in Sources */,
 				78BE609329EB445500841486 /* assessment_iosApp.swift in Sources */,
+				3DCE8E3329EF94F60018588F /* APIService.swift in Sources */,
 				78BE609F29EB445700841486 /* assessment_ios.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -479,7 +511,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -497,7 +529,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"assessment-ios/Preview Content\"";
-				DEVELOPMENT_TEAM = ED4X4ATM8P;
+				DEVELOPMENT_TEAM = G34SGRG79L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Assessment iOS";
@@ -511,7 +543,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ivantrejo.htsmexico.assessment-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "robertogutierrez.assessment-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -527,7 +559,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"assessment-ios/Preview Content\"";
-				DEVELOPMENT_TEAM = ED4X4ATM8P;
+				DEVELOPMENT_TEAM = G34SGRG79L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Assessment iOS";
@@ -541,7 +573,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ivantrejo.htsmexico.assessment-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "robertogutierrez.assessment-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -665,6 +697,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3DCE8E3C29EFC1A10018588F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3DCE8E3D29EFC1A10018588F /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DCE8E3C29EFC1A10018588F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		78BE609D29EB445700841486 /* assessment_ios.xcdatamodeld */ = {

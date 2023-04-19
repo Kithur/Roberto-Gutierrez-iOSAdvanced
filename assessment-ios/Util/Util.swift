@@ -15,4 +15,10 @@ final class Util {
         }
         return ""
     }
+
+    static let jsonDecoder: JSONDecoder = {
+      let jsonDecoder = JSONDecoder()
+      jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+      return jsonDecoder
+    }()
 }
