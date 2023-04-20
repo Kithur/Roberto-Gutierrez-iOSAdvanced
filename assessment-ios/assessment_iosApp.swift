@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct assessment_iosApp: App {
-    let persistenceController = PersistenceController.shared
+
+    init() {
+        NetworkMonitor.shared.startMonitoring()
+    }
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            HomeView(viewModel: HomeViewModel.make())
         }
     }
 }
