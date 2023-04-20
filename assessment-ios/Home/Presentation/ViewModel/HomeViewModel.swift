@@ -7,25 +7,28 @@
 
 import Foundation
 import Combine
-// MARK: - Welcome
-struct PokemonList: Codable {
-    let results: [Pokemon]
+
+protocol HomeViewModelProtocol: ObservableObject {
+    var pokemonArray: [Pokemon] { get set }
+    func fetchPokemonList()
+    func shouldFetchAdditionalPokemon(for index: Int)
 }
 
-// MARK: - Result
-struct Pokemon: Codable {
-    let name: String
-    let url: String
-}
-
-final class HomeViewModel: ObservableObject {
+final class HomeViewModel: HomeViewModelProtocol {
     @Published var pokemonArray = [Pokemon]()
-    let serviceManager: APIService = ServiceManager()
-    var bag: Set<AnyCancellable> = Set<AnyCancellable>()
+    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
+    private let fetchPokemonListUseCase: FetchPokemonListUseCaseProtocol
+    private let writeToDatabaseUseCase: WriteToDatabaseUseCaseProtocol
+
+    init(fetchPokemonListUseCase: FetchPokemonListUseCaseProtocol,
+         writeToDatabaseUseCase: WriteToDatabaseUseCaseProtocol) {
+        self.fetchPokemonListUseCase = fetchPokemonListUseCase
+        self.writeToDatabaseUseCase = writeToDatabaseUseCase
+    }
     
     func fetchPokemonList() {
-        serviceManager
-            .fetch(from: .pagination(String(pokemonArray.count)), decodedType: PokemonList.self)
+        fetchPokemonListUseCase
+            .execute(listCount: pokemonArray.count)
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure:
@@ -34,7 +37,27 @@ final class HomeViewModel: ObservableObject {
                     break
                 }
             }, receiveValue: { [weak self] pokemonList  in
-                self?.pokemonArray.append(contentsOf: pokemonList.results)
+                guard let self = self else { return }
+                self.pokemonArray.append(contentsOf: pokemonList)
+                self.writeToDatabaseUseCase.execute(pokemonList: pokemonList)
             }).store(in: &bag)
+    }
+
+    func shouldFetchAdditionalPokemon(for index: Int) {
+        guard index == pokemonArray.count - 1,
+        NetworkMonitor.shared.isConnected else { return }
+        fetchPokemonList()
+    }
+}
+
+extension HomeViewModel {
+    static func make() -> HomeViewModel {
+        let serviceManager = ServiceManager()
+        let databaseManager = DatabaseManager()
+        let repository = HomeViewRepository(serviceManager: serviceManager, databaseManager: databaseManager)
+        let fetchPokemonListUseCase = FetchPokemonListUseCase(repository: repository)
+        let writeToDatabaseUseCase = WriteToDatabaseUseCase(repository: repository)
+        return HomeViewModel(fetchPokemonListUseCase: fetchPokemonListUseCase,
+                             writeToDatabaseUseCase: writeToDatabaseUseCase)
     }
 }
