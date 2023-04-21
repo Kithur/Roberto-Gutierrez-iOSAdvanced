@@ -8,7 +8,6 @@
 import Foundation
 
 protocol Endpoint {
-    
     var base: String { get }
     var url: String { get }
     func getFinalURL() -> URL?
@@ -27,11 +26,10 @@ extension PokemonRequest {
 }
 
 extension PokemonRequest: Endpoint {
-    
     var base: String {
         return "https://pokeapi.co/api/v2/pokemon"
     }
-    
+
     var url: String {
         switch self {
         case .pagination:
@@ -40,7 +38,7 @@ extension PokemonRequest: Endpoint {
             return "\(base)/\(id)"
         }
     }
-    
+
     var params: [String: String]? {
         switch self {
         case .pagination(let current):
@@ -50,15 +48,13 @@ extension PokemonRequest: Endpoint {
             return nil
         }
     }
-    
+
     func getFinalURL() -> URL? {
         var queryItems: [URLQueryItem] = []
         if let params = params {
             queryItems.append(contentsOf: params.map { URLQueryItem(name: $0.key, value: $0.value) })
         }
-        
         let urlString = url
-        
         var urlComponents = URLComponents(string: urlString)
         urlComponents?.queryItems = queryItems
         return urlComponents?.url

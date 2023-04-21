@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class PokemonDatabaseEntity: Object, ObjectKeyIdentifiable {
+final class PokemonDatabaseEntity: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String = ""
     @Persisted var url: String = ""

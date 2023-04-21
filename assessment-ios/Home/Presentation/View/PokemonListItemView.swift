@@ -25,9 +25,9 @@ struct PokemonListItemView: View {
                 .scaledToFit()
                 .frame(width: 64.0, height: 64.0)
             VStack(alignment: .leading) {
-                Text(model.name)
+                Text(model.name.capitalized)
                     .font(.title)
-                Text(model.dexNumber)
+                Text("Dex Number: \(model.dexNumber)")
                     .font(.body)
             }
             .padding(.leading)

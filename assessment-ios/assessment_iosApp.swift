@@ -16,7 +16,7 @@ struct assessment_iosApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView(viewModel: HomeViewModel.make())
+            HomeView(viewModel: HomeViewModel.make(), navigationMonitor: NetworkMonitor.shared)
         }
     }
 }

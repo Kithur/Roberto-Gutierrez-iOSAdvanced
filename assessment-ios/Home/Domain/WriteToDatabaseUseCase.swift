@@ -21,19 +21,9 @@ final class WriteToDatabaseUseCase: WriteToDatabaseUseCaseProtocol {
 
     func execute(pokemonList: [Pokemon]) {
         let pokemonDatabaseList: [PokemonDatabaseEntity] = pokemonList.compactMap { pokemon in
-            guard let value = getDictionary(pokemon: pokemon) else { return nil }
+            guard let value = Util.getDictionary(object: pokemon) else { return nil }
             return PokemonDatabaseEntity(value: value)
         }
         repository.writeToDatabase(pokemonList: pokemonDatabaseList)
-    }
-
-    private func getDictionary(pokemon: Pokemon) -> Any? {
-        let encoder = JSONEncoder()
-        guard let jsonData = try? encoder.encode(pokemon) else {
-            return nil
-        }
-        let dictionary = try? JSONSerialization.jsonObject(with: jsonData,
-                                                           options: [])
-        return dictionary
     }
 }

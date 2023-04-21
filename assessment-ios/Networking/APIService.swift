@@ -25,13 +25,12 @@ enum APIError: Error {
 }
 
 protocol APIService {
-    var session: URLSession { get }
     func fetch<T: Decodable>(from pokemonRequest: PokemonRequest,
                              decodedType: T.Type) -> AnyPublisher<T, APIError>
 }
 
-class ServiceManager: APIService {
-    var session: URLSession
+final class ServiceManager: APIService {
+    private var session: URLSession
     
     init(configuration: URLSessionConfiguration) {
         self.session = URLSession(configuration: configuration)

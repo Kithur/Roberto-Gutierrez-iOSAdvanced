@@ -9,23 +9,23 @@ import Combine
 import Foundation
 
 protocol HomeViewRepositoryProtocol {
-    func fetchPokemonList(listCount: Int) -> AnyPublisher<[Pokemon], Error>
+    func fetchPokemonListFromRemote(listCount: Int) -> AnyPublisher<[Pokemon], Error>
+    func fetchPokemonListFromLocal() -> AnyPublisher<[Pokemon], Error>
     func writeToDatabase(pokemonList: [PokemonDatabaseEntity])
 }
 
 final class HomeViewRepository: HomeViewRepositoryProtocol {
     private let serviceManager: APIService
     let databaseManager: DatabaseManagerProtocol
+
     init(serviceManager: APIService, databaseManager: DatabaseManagerProtocol) {
         self.serviceManager = serviceManager
         self.databaseManager = databaseManager
     }
 
-    func fetchPokemonList(listCount: Int) -> AnyPublisher<[Pokemon], Error> {
-        if NetworkMonitor.shared.isConnected {
-            return fetchPokemonListFromRemote(listCount: listCount)
-        } else {
-            return fetchPokemonListFromLocal()
+    func writeToDatabase(pokemonList: [PokemonDatabaseEntity]) {
+        pokemonList.forEach { pokemon in
+            databaseManager.create(pokemon)
         }
     }
 
@@ -46,11 +46,4 @@ final class HomeViewRepository: HomeViewRepositoryProtocol {
             })
             .eraseToAnyPublisher()
     }
-
-    func writeToDatabase(pokemonList: [PokemonDatabaseEntity]) {
-        pokemonList.forEach { pokemon in
-            databaseManager.create(pokemon)
-        }
-    }
-
 }

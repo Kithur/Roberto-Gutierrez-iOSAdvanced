@@ -20,8 +20,10 @@ final class FetchPokemonListUseCase: FetchPokemonListUseCaseProtocol {
     }
 
     func execute(listCount: Int) -> AnyPublisher<[Pokemon], Error> {
-        repository
-            .fetchPokemonList(listCount: listCount)
-            .eraseToAnyPublisher()
+        if NetworkMonitor.shared.isConnected {
+            return repository.fetchPokemonListFromRemote(listCount: listCount)
+        } else {
+            return repository.fetchPokemonListFromLocal()
+        }
     }
 }

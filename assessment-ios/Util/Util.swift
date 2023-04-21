@@ -21,4 +21,14 @@ final class Util {
       jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
       return jsonDecoder
     }()
+
+    static func getDictionary<T: Encodable>(object: T) -> Any? {
+        let encoder = JSONEncoder()
+        guard let jsonData = try? encoder.encode(object) else {
+            return nil
+        }
+        let dictionary = try? JSONSerialization.jsonObject(with: jsonData,
+                                                           options: [])
+        return dictionary
+    }
 }
